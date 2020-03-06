@@ -1,53 +1,66 @@
-import robocode.*;
-//import java.awt.Color;
+/**
+ * Copyright (c) 2001-2017 Mathew A. Nelson and Robocode contributors
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://robocode.sourceforge.net/license/epl-v10.html
+ */
+import robocode.AdvancedRobot;
+import robocode.HitRobotEvent;
+import robocode.ScannedRobotEvent;
 
-// API help : http://robocode.sourceforge.net/docs/robocode/robocode/Robot.html
+import java.awt.*;
+
 
 /**
- * SaMa - a robot by (your name here)
+ * SpinBot - a sample robot by Mathew Nelson.
+ * <p/>
+ * Moves in a circle, firing hard when an enemy is detected.
+ *
+ * @author Mathew A. Nelson (original)
+ * @author Flemming N. Larsen (contributor)
  */
-public class SaMa extends AdvancedRobot
-{
+public class SaMa extends AdvancedRobot {
+
 	/**
-	 * run: SaMa's default behavior
+	 * SpinBot's run method - Circle
 	 */
 	public void run() {
-		// Initialization of the robot should be put here
+		// Set colors
+		setBodyColor(Color.blue);
+		setGunColor(Color.blue);
+		setRadarColor(Color.black);
+		setScanColor(Color.yellow);
 
-		// After trying out your robot, try uncommenting the import at the top,
-		// and the next line:
-
-		// setColors(Color.red,Color.blue,Color.green); // body,gun,radar
-
-		// Robot main loop
-		while(true) {
-			// Replace the next 4 lines with any behavior you would like
-			//dajsdasjd
-			ahead(100);
+		// Loop forever
+		while (true) {
+			// Tell the game that when we take move,
+			// we'll also want to turn right... a lot.
+			setTurnRight(10000);
+			// Limit our speed to 5
+			setMaxVelocity(5);
+			// Start moving (and turning)
+			ahead(10000);
+			// Repeat.
 		}
 	}
 
 	/**
-	 * onScannedRobot: What to do when you see another robot
+	 * onScannedRobot: Fire hard!
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
-		// Replace the next line with any behavior you would like
-		
 	}
 
 	/**
-	 * onHitByBullet: What to do when you're hit by a bullet
+	 * onHitRobot:  If it's our fault, we'll stop turning and moving,
+	 * so we need to turn again to keep spinning.
 	 */
-	public void onHitByBullet(HitByBulletEvent e) {
-		// Replace the next line with any behavior you would like
-		
+	public void onHitRobot(HitRobotEvent e) {
+		if (e.getBearing() > -10 && e.getBearing() < 10) {
+			fire(3);
+		}
+		if (e.isMyFault()) {
+			turnRight(10);
+		}
 	}
-	
-	/**
-	 * onHitWall: What to do when you hit a wall
-	 */
-	public void onHitWall(HitWallEvent e) {
-		// Replace the next line with any behavior you would like
-		
-	}	
 }
