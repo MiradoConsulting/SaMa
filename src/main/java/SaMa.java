@@ -110,8 +110,8 @@ public class SaMa extends AdvancedRobot {
 		//	setTurnGunLeftRadians(PI*2 - moveTurret);
 		//}
 		
-		if(e.getDistance() < 250) {
-			fire(5 * 250 / e.getDistance());
+		if(e.getDistance() < 200) {
+			fire(5 * 200 / e.getDistance());
 		} 
 	}
 
