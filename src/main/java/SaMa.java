@@ -38,9 +38,9 @@ public class SaMa extends AdvancedRobot {
 		while (true) {
 			// Tell the game that when we take move,
 			// we'll also want to turn right... a lot.
-			setTurnRight(10000);
+			setTurnRight(1000);
 			// Limit our speed to 5
-			setMaxVelocity(5);
+			setMaxVelocity(50);
 			// Start moving (and turning)
 			ahead(10000);
 			// Repeat.
