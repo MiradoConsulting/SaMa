@@ -28,10 +28,10 @@ public class SaMa extends AdvancedRobot {
 	 */
 	public void run() {
 		// Set colors
-		setBodyColor(Color.blue);
-		setGunColor(Color.blue);
-		setRadarColor(Color.black);
-		setScanColor(Color.yellow);
+		setBodyColor(Color.pink);
+		setGunColor(Color.pink);
+		setRadarColor(Color.pink);
+		setScanColor(Color.pink);
 		double height = getBattleFieldHeight();
 		double width = getBattleFieldWidth();
 		
@@ -102,18 +102,16 @@ public class SaMa extends AdvancedRobot {
 		double ourDirection = getHeadingRadians();
 		double moveTurret = enemyBearing - ourDirection - ourTurret; 
 		
-		if (moveTurret < -1 * PI) {
-			setTurnGunRightRadians(PI*2 + moveTurret);
-		} else if(moveTurret < PI) {
-			setTurnGunRightRadians(moveTurret);
-		} else {
-			setTurnGunLeftRadians(PI*2 - moveTurret);
-		}
-
-			
+		//if (moveTurret < -1 * PI) {
+		//	setTurnGunRightRadians(PI*2 + moveTurret);
+		//} else if(moveTurret < PI) { */
+		setTurnGunRightRadians(moveTurret);
+		//} else {
+		//	setTurnGunLeftRadians(PI*2 - moveTurret);
+		//}
 		
-		if(e.getDistance() < 300) {
-			fire(5 * 300 / e.getDistance());
+		if(e.getDistance() < 150) {
+			fire(5 * 150 / e.getDistance());
 		} 
 	}
 
