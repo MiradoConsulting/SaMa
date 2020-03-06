@@ -60,7 +60,25 @@ public class SaMa extends AdvancedRobot {
 					maxVelocity = 5;
 					turnRight = true;
 				}
-			}
+			} else if (getY() < height/8) {
+				if(getHeading() > 90 && getHeading() < 180) {
+					maxVelocity = 5; 
+					turnRight = false;
+				} else if(getHeading() < 270 && getHeading() > 180) {
+					maxVelocity = 5; 
+					turnRight = true;
+				}
+			} else if (getY() > height - height/8) {
+				if(0 < getHeading() && getHeading() < 90) {
+					maxVelocity = 5; 
+					turnRight = true;
+				} else if(getHeading() > 270) {
+					maxVelocity = 5; 
+					turnRight = false;
+				}
+			} 
+			
+			
 			
 
 			if(turnRight) {
