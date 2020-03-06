@@ -31,19 +31,46 @@ public class SaMa extends AdvancedRobot {
 		setGunColor(Color.blue);
 		setRadarColor(Color.black);
 		setScanColor(Color.yellow);
+		double height = getBattleFieldHeight();
+		double width = getBattleFieldWidth();
 		
-		
+		double ourHeight = getHeight();
+		double ourWidth = getWidth();
+		boolean turnRight = true;
+		double maxVelocity = 50;		
 
 		// Loop forever
 		while (true) {
-			// Tell the game that when we take move,
-			// we'll also want to turn right... a lot.
-			setTurnRight(1000);
-			// Limit our speed to 5
-			setMaxVelocity(50);
-			// Start moving (and turning)
-			ahead(10000);
-			// Repeat.
+			maxVelocity = 500;
+			if(getX() > width - width/10)
+			{
+				if(0 < getHeading() && getHeading() < 90) {
+					maxVelocity = 5;
+					turnRight = false;
+				} else if (getHeading() < 180) {
+					maxVelocity = 5;
+					turnRight = true;
+				}
+			} else if (getX() < width/10) {
+				if(180 < getHeading() && getHeading() < 270) {
+					maxVelocity = 5;
+					turnRight = false;
+				} else if (getHeading() > 270) {
+					maxVelocity = 5;
+					turnRight = true;
+				}
+			}
+			
+
+			if(turnRight) {
+				setTurnRight(300);
+			} else {
+				setTurnLeft(300);
+			}
+			
+			setMaxVelocity(maxVelocity);
+			setAhead(300);
+			execute();
 		}
 	}
 
