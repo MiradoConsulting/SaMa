@@ -21,6 +21,7 @@ import java.awt.*;
  * @author Flemming N. Larsen (contributor)
  */
 public class SaMa extends AdvancedRobot {
+	static final double PI = 3.1415;
 
 	/**
 	 * SpinBot's run method - Circle
@@ -83,8 +84,16 @@ public class SaMa extends AdvancedRobot {
 		double ourDirection = getHeadingRadians();
 		double moveTurret = enemyBearing - ourDirection - ourTurret; 
 		
-		setTurnGunRightRadians(moveTurret);
+		if (moveTurret < -1 * PI) {
+			setTurnGunRightRadians(PI*2 + moveTurret);
+		} else if(moveTurret < PI) {
+			setTurnGunRightRadians(moveTurret);
+		} else {
+			setTurnGunLeftRadians(PI*2 - moveTurret);
+		}
+
 			
+		
 		if(e.getDistance() < 300) {
 			fire(5 * 300 / e.getDistance());
 		} 
