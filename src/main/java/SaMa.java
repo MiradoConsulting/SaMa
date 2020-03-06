@@ -6,7 +6,7 @@ import robocode.*;
 /**
  * SaMa - a robot by (your name here)
  */
-public class SaMa extends Robot
+public class SaMa extends AdvancedRobot
 {
 	/**
 	 * run: SaMa's default behavior
@@ -22,10 +22,7 @@ public class SaMa extends Robot
 		// Robot main loop
 		while(true) {
 			// Replace the next 4 lines with any behavior you would like
-			ahead(100);
-			turnGunRight(360);
-			back(100);
-			turnGunRight(360);
+			
 		}
 	}
 
@@ -34,7 +31,7 @@ public class SaMa extends Robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
 		// Replace the next line with any behavior you would like
-		fire(1);
+		
 	}
 
 	/**
@@ -42,7 +39,7 @@ public class SaMa extends Robot
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
 		// Replace the next line with any behavior you would like
-		back(10);
+		
 	}
 	
 	/**
@@ -50,6 +47,6 @@ public class SaMa extends Robot
 	 */
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
-		back(20);
+		
 	}	
 }
