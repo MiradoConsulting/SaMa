@@ -31,6 +31,8 @@ public class SaMa extends AdvancedRobot {
 		setGunColor(Color.blue);
 		setRadarColor(Color.black);
 		setScanColor(Color.yellow);
+		
+		
 
 		// Loop forever
 		while (true) {
@@ -49,6 +51,16 @@ public class SaMa extends AdvancedRobot {
 	 * onScannedRobot: Fire hard!
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
+		double enemyBearing = e.getBearingRadians();
+		double ourTurret = getGunHeadingRadians();
+		double ourDirection = getHeadingRadians();
+		double moveTurret = enemyBearing - ourDirection - ourTurret; 
+		
+		setTurnGunRightRadians(moveTurret);
+			
+		if(e.getDistance() < 100) {
+			fire(3);
+		}
 	}
 
 	/**
